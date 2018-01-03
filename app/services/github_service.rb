@@ -3,6 +3,7 @@ class GithubService
   attr_reader :access_token
 
   def initialize(access_hash = nil)
+    # binding.pry
     @access_token = access_hash["access_token"] if access_hash
   end
 
@@ -21,6 +22,7 @@ class GithubService
   end
 
   def get_repos
+    # binding.pry
     response = Faraday.get "https://api.github.com/user/repos", {}, {'Authorization' => "token #{self.access_token}", 'Accept' => 'application/json'}
     repos_array = JSON.parse(response.body)
     repos_array.map{|repo| GithubRepo.new(repo) }

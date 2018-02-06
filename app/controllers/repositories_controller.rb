@@ -14,7 +14,7 @@ class RepositoriesController < ApplicationController
   #   redirect_to '/'
   # end
 
-  def create #version that actually uses the given #get_repos
+  def create #version that actually uses the given #create_repo(name)
     github = GithubService.new({'access_token' => session[:token]})
     github.create_repo(params[:name])
     redirect_to '/'
